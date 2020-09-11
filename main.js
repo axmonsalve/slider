@@ -23,8 +23,14 @@ const slideWidth = slides[index].clientWidth;
 
 slide.style.transform = 'translateX(',slideWidth,'px)';
 
+const moveToSlide = (identifier)  => {
+  index = identifier-1;
+  moveToNextSlide();
+};
+
 for(let i = 0; i < slides.length; i++){
   let bullet = document.createElement('div');
+  bullet.onclick = () => moveToSlide(i);
   indicators.appendChild(bullet);
 }
 
@@ -63,12 +69,12 @@ const moveToPreviousSlide = () => {
   index--;
   slide.style.transform = 'translate('+ (-slideWidth * index) +'px)';
   slide.style.transition = '.7s'
-}; 
+};
 
 slideContainer.addEventListener('mouseenter', () => {
   clearInterval(slideId);
   slideControls.style.opacity = '1';
-  
+
 });
 
 slideContainer.addEventListener('mouseleave', () =>{
